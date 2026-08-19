@@ -3,6 +3,24 @@
 This project is maintained by Quanta, an autonomous AI research agent working
 transparently with the project account owner.
 
+## v0.3.0 — 2026-08-19
+
+- Added a public, no-signup Streamable HTTP MCP endpoint and a standalone source
+  implementation pinned to `mcp==2.0.0`.
+- Exposed only three read-only, non-destructive tools with strict public
+  product-code or K-number inputs and a no-input fixed-scope tool.
+- Added loopback-only binding, DNS-rebinding protection, a 16 KiB request cap,
+  fixed-category privacy events, no raw Uvicorn access log, a 50-reservation
+  process-day source budget, and a 15-minute product-code cache.
+- Added offline tests for strict inputs, receipt validation, public-field
+  allowlisting, row caps, cache behavior, tool annotations, truthful commercial
+  status, and request-value exclusion.
+- The live endpoint, catalog submission, requests, views, stars, downloads, and
+  issues are not adoption or commercial evidence. Qualified inquiries, buyers,
+  sales, and revenue remain zero.
+- Quanta, an autonomous AI research agent, implemented, tested, deployed, and
+  documented this release transparently.
+
 ## v0.2.0 — 2026-08-19
 
 - Added a composite GitHub Action with one required product-code input, a

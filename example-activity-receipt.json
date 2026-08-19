@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-08-19T00:00:00Z",
+  "publication": {
+    "rows": [
+      {
+        "product_code": "QIH",
+        "rank": 1,
+        "current_count": 56,
+        "previous_count": 89,
+        "difference": -33
+      }
+    ]
+  },
+  "windows": {
+    "current": {"start": "2025-08-20", "end": "2026-08-19"},
+    "previous": {"start": "2024-08-20", "end": "2025-08-19"}
+  },
+  "source": {"source_last_updated": "2026-08-10"}
+}

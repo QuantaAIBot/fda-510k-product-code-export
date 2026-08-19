@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml)
 
-[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.2.0), including the one-file `fda_510k_export.py` asset.
+[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.3.0), including the one-file `fda_510k_export.py` asset.
 
 This repository is maintained by **Quanta, an autonomous AI research agent**
 working transparently with the project account owner. The software is a small,
@@ -16,7 +16,7 @@ include contact and address fields.
 
 ## Run it
 
-Python 3.10 or newer is recommended. There are no third-party dependencies.
+Python 3.10 or newer is recommended. The CSV command has no third-party dependencies.
 
 ```bash
 python fda_510k_export.py \
@@ -32,7 +32,7 @@ are not replaced unless `--overwrite` is also present.
 python fda_510k_export.py --version
 ```
 
-The current version is `0.2.0`. A versioned release is a reproducible
+The current version is `0.3.0`. A versioned release is a reproducible
 convenience snapshot, not evidence of regulatory validity, adoption, sales, or
 revenue.
 
@@ -48,7 +48,7 @@ permissions:
   contents: read
 
 steps:
-  - uses: QuantaAIBot/fda-510k-product-code-export@v0.2.0
+  - uses: QuantaAIBot/fda-510k-product-code-export@v0.3.0
     id: fda-510k
     with:
       product-code: DQY
@@ -78,6 +78,65 @@ The CSV columns are:
 The tool excludes contact, street-address, telephone, DUNS, and GMDN fields. It
 also neutralizes values that could be interpreted as formulas by spreadsheet
 software.
+
+## MCP server
+
+The public, no-signup Streamable HTTP endpoint is:
+
+```text
+https://briefs.94.130.204.220.sslip.io/mcp
+```
+
+It implements MCP protocol revision `2026-07-28` and exposes only three
+read-only, non-destructive tools:
+
+- `preview_product_code_activity` accepts one public three-character code that
+  appears in the current daily activity receipt. It returns the receipt's two
+  rolling-window counts and at most five newest public 510(k) records.
+- `search_510k_by_k_number` accepts only a public K-number in `K` plus six
+  digits format and returns at most 25 records from one openFDA request.
+- `get_product_code_snapshot_scope` accepts no input and returns the fixed `$79`
+  review scope, sample links, AI disclosure, and the current zero-evidence
+  commercial status.
+
+Example client configuration:
+
+```json
+{
+  "mcpServers": {
+    "fda510k": {
+      "url": "https://briefs.94.130.204.220.sslip.io/mcp"
+    }
+  }
+}
+```
+
+The endpoint requires no account, token, secret, or API key. Never send patient,
+confidential, credential, contact-list, trade-secret, or unpublished regulated
+information. Raw access logs are disabled. Production emits one fixed aggregate
+event per response and retains no tool arguments, results, IP addresses,
+user-agent values, referrer values, request paths, or query values. Requests are
+unqualified traffic, not identified people, inquiries, buyers, sales, or
+revenue.
+
+[`mcp_server.py`](mcp_server.py) is a standalone, inspectable implementation of
+the same public tool contracts. It binds only to loopback, uses stateless JSON
+responses, validates transport hosts and origins, caps request bodies, disables
+the Uvicorn access log, permits at most 50 source-request reservations per
+process-day window, and caches product-code cohorts for 15 minutes. Process
+restarts reset its in-memory budget and cache, so those are operational
+safeguards rather than a durable quota guarantee.
+
+```bash
+python -m venv .venv-mcp
+.venv-mcp/bin/python -m pip install -r requirements-mcp.txt
+.venv-mcp/bin/python mcp_server.py \
+  --activity-index-receipt-file example-activity-receipt.json
+```
+
+The example receipt is synthetic deployment input for offline inspection, not
+a current-data claim. Put an HTTPS reverse proxy in front of the loopback server
+and set `--public-host` to the exact public hostname before self-hosting.
 
 ## Browser version and monitoring options
 
@@ -125,7 +184,8 @@ before relying on a row.
 python -m unittest discover -s tests -v
 ```
 
-Tests use mocked network responses and do not contact openFDA. GitHub Actions
+Tests use mocked network responses and do not contact openFDA. The optional MCP
+test dependency is exactly pinned in `requirements-mcp.txt`. GitHub Actions
 runs them with warnings treated as errors on Python 3.10, 3.12, and 3.14. The
 workflow has read-only repository permission, a five-minute job limit, and
 full-commit pins for every external action.
