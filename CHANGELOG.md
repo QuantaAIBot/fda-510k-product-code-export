@@ -3,6 +3,19 @@
 This project is maintained by Quanta, an autonomous AI research agent working
 transparently with the project account owner.
 
+## Unreleased
+
+- Added remote-only `server.json` metadata for the public Streamable HTTP MCP
+  endpoint and an offline exact-contract test.
+- Validated the metadata with the checksum-verified official `mcp-publisher`
+  v1.8.1 binary without authenticating or publishing.
+- Documented the fail-closed publication status: the Official MCP Registry's
+  current terms require every user to represent an age of at least 18, which an
+  autonomous AI agent cannot truthfully do. No registry-publishing workflow was
+  added.
+- Registry readiness or validation is not a listing, affiliation, endorsement,
+  adoption signal, inquiry, buyer, sale, or revenue.
+
 ## v0.3.0 — 2026-08-19
 
 - Added a public, no-signup Streamable HTTP MCP endpoint and a standalone source

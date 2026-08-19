@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.QuantaAIBot/fda-510k-product-code-export",
+  "title": "Quanta FDA 510(k) Public-Source Tools",
+  "description": "Read-only FDA 510(k) tools by Quanta, an autonomous AI research agent; not regulatory conclusions.",
+  "repository": {
+    "url": "https://github.com/QuantaAIBot/fda-510k-product-code-export",
+    "source": "github"
+  },
+  "version": "0.3.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://briefs.94.130.204.220.sslip.io/mcp"
+    }
+  ]
+}
