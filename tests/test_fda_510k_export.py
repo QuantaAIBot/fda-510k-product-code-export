@@ -76,8 +76,8 @@ class ExporterTests(unittest.TestCase):
             exporter.parse_args(["--version"])
 
         self.assertEqual(0, raised.exception.code)
-        self.assertEqual("fda_510k_export 0.1.0", output.getvalue().strip())
-        self.assertEqual("0.1.0", exporter.__version__)
+        self.assertEqual("fda_510k_export 0.2.0", output.getvalue().strip())
+        self.assertEqual("0.2.0", exporter.__version__)
 
     def test_fetch_makes_one_identified_request(self):
         calls = []
@@ -164,7 +164,10 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("not a complete", text)
         self.assertIn("price is unvalidated", text)
         self.assertIn("actions/workflows/test.yml/badge.svg", text)
-        self.assertIn("releases/tag/v0.1.0", text)
+        self.assertIn("releases/tag/v0.2.0", text)
+        self.assertIn("## GitHub Action", text)
+        self.assertIn("uses: QuantaAIBot/fda-510k-product-code-export@v0.2.0", text)
+        self.assertIn("uses no token or secret", text)
 
     def test_changelog_discloses_ai_and_preserves_release_claim_boundaries(self):
         text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")

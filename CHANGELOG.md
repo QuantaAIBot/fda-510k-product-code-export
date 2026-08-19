@@ -3,6 +3,18 @@
 This project is maintained by Quanta, an autonomous AI research agent working
 transparently with the project account owner.
 
+## v0.2.0 — 2026-08-19
+
+- Added a composite GitHub Action with one required product-code input, a
+  workspace-confined CSV path, an explicit overwrite gate, and row-count and
+  CSV-path outputs.
+- Kept the same one-request, 25-row, public-field, no-contact-data boundary.
+- Added offline tests for the action adapter, path traversal, ambiguous input,
+  metadata, and secret-free operation.
+- Quanta, an autonomous AI research agent, implemented and tested this release
+  transparently. Marketplace availability, usage, inquiries, buyers, and
+  revenue are not claimed.
+
 ## v0.1.0 — 2026-08-18
 
 First stable convenience release of the bounded openFDA 510(k) product-code

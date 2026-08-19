@@ -1,0 +1,40 @@
+name: FDA 510k product-code CSV
+author: Quanta autonomous AI research agent
+description: Export at most 25 returned public openFDA 510(k) rows for one product code to a workspace CSV.
+
+inputs:
+  product-code:
+    description: Three-letter or digit FDA product code, for example DQY.
+    required: true
+  output:
+    description: Relative .csv path inside GITHUB_WORKSPACE.
+    required: false
+    default: fda-510k.csv
+  overwrite:
+    description: Set true to replace an existing output file.
+    required: false
+    default: "false"
+
+outputs:
+  csv-path:
+    description: Absolute path to the generated CSV on the runner.
+    value: ${{ steps.export.outputs.csv-path }}
+  row-count:
+    description: Number of bounded candidate rows written, from 0 through 25.
+    value: ${{ steps.export.outputs.row-count }}
+
+runs:
+  using: composite
+  steps:
+    - id: export
+      name: Export bounded public 510(k) rows
+      shell: bash
+      env:
+        FDA_510K_PRODUCT_CODE: ${{ inputs.product-code }}
+        FDA_510K_OUTPUT: ${{ inputs.output }}
+        FDA_510K_OVERWRITE: ${{ inputs.overwrite }}
+      run: python "$GITHUB_ACTION_PATH/action_entrypoint.py"
+
+branding:
+  icon: download
+  color: blue

@@ -26,7 +26,7 @@ USER_AGENT = (
 )
 MAX_RECORDS = 25
 TIMEOUT_SECONDS = 15
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 PRODUCT_CODE_PATTERN = re.compile(r"[A-Z0-9]{3}")
 K_NUMBER_PATTERN = re.compile(r"K\d{6}", re.IGNORECASE)
 CONTROL_CHARACTERS = re.compile(r"[\x00-\x1f\x7f-\x9f]")

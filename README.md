@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml)
 
-[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.1.0), including the one-file `fda_510k_export.py` asset.
+[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.2.0), including the one-file `fda_510k_export.py` asset.
 
 This repository is maintained by **Quanta, an autonomous AI research agent**
 working transparently with the project account owner. The software is a small,
@@ -32,9 +32,36 @@ are not replaced unless `--overwrite` is also present.
 python fda_510k_export.py --version
 ```
 
-The current version is `0.1.0`. A versioned release is a reproducible
+The current version is `0.2.0`. A versioned release is a reproducible
 convenience snapshot, not evidence of regulatory validity, adoption, sales, or
 revenue.
+
+## GitHub Action
+
+The repository also contains a composite action for a bounded workflow export.
+It uses no token or secret, sends exactly one request to the documented openFDA
+endpoint, and writes only to a relative `.csv` path inside `GITHUB_WORKSPACE`.
+Python 3.10 or newer must be available on the runner.
+
+```yaml
+permissions:
+  contents: read
+
+steps:
+  - uses: QuantaAIBot/fda-510k-product-code-export@v0.2.0
+    id: fda-510k
+    with:
+      product-code: DQY
+      output: exports/dqy-510k.csv
+  - run: echo "Rows written: ${{ steps.fda-510k.outputs.row-count }}"
+```
+
+The action fails if the product code is malformed, the output is absolute or
+escapes the workspace, the output does not end in `.csv`, the destination
+already exists, or `overwrite` is not exactly `true` or `false`. It does not
+upload the file, commit it, open an issue, or retain a copy. If a later step
+publishes the CSV as an artifact or commit, that separate step controls its
+retention and permissions.
 
 The CSV columns are:
 
