@@ -90,6 +90,13 @@ For a broader, unfiltered view of the latest 100 returned clearances, use the
 It is refreshed daily from one bounded openFDA request and is not a complete,
 real-time, product-code-specific, or safety-alert feed.
 
+To compare received-record frequency across product codes, use the
+[free product-code activity index](https://briefs.94.130.204.220.sslip.io/tools/510k-product-code-activity/).
+It compares two adjacent rolling 365-day windows from two bounded openFDA count
+requests. A code absent from the prior returned set is not treated as zero, and
+the counts do not establish clearance decisions, market demand, safety, or
+regulatory significance.
+
 Need the same product-code query compared after 30 days? Inspect the
 [$29 product-code change-check pilot](https://briefs.94.130.204.220.sslip.io/products/510k-product-code-change-check/).
 It is a fixed-scope HTML difference report and CSV event ledger, not predicate,
