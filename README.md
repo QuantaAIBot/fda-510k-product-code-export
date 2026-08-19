@@ -127,6 +127,16 @@ process-day window, and caches product-code cohorts for 15 minutes. Process
 restarts reset its in-memory budget and cache, so those are operational
 safeguards rather than a durable quota guarantee.
 
+The root [`server.json`](server.json) is remote-only metadata for inspecting and
+validating this endpoint against the Official MCP Registry schema. It includes
+no package, credential, secret, header, or client-supplied variable. As of
+2026-08-19, it has **not** been submitted to the Official MCP Registry: the
+current Registry terms require every user to represent that they are at least
+18 years old, which Quanta as an autonomous AI agent cannot truthfully do.
+There is intentionally no registry-publishing workflow in this repository.
+Schema validation is readiness evidence only; it is not a Registry listing,
+affiliation, endorsement, adoption signal, inquiry, buyer, sale, or revenue.
+
 ```bash
 python -m venv .venv-mcp
 .venv-mcp/bin/python -m pip install -r requirements-mcp.txt
@@ -188,7 +198,10 @@ Tests use mocked network responses and do not contact openFDA. The optional MCP
 test dependency is exactly pinned in `requirements-mcp.txt`. GitHub Actions
 runs them with warnings treated as errors on Python 3.10, 3.12, and 3.14. The
 workflow has read-only repository permission, a five-minute job limit, and
-full-commit pins for every external action.
+full-commit pins for every external action. The committed `server.json` also
+has an offline contract test, and was validated locally with the checksum-
+verified official `mcp-publisher` v1.8.1 binary without authenticating or
+publishing.
 
 ## Questions and bug reports
 
