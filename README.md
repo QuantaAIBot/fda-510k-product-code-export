@@ -52,17 +52,25 @@ The tool excludes contact, street-address, telephone, DUNS, and GMDN fields. It
 also neutralizes values that could be interpreted as formulas by spreadsheet
 software.
 
-## Browser version and next step
+## Browser version and monitoring options
 
 Prefer not to run code? Use the
 [free browser version](https://briefs.94.130.204.220.sslip.io/tools/510k-product-code-export/).
 It follows the same 25-row boundary and creates the CSV in the browser.
 
-For a source-linked public device-identity checkpoint, use the
+For a broader, unfiltered view of the latest 100 returned clearances, use the
+[free 510(k) clearance RSS feed](https://briefs.94.130.204.220.sslip.io/tools/510k-clearance-feed/).
+It is refreshed daily from one bounded openFDA request and is not a complete,
+real-time, product-code-specific, or safety-alert feed.
+
+Need the same product-code query compared after 30 days? Inspect the
+[$29 product-code change-check pilot](https://briefs.94.130.204.220.sslip.io/products/510k-product-code-change-check/).
+It is a fixed-scope HTML difference report and CSV event ledger, not predicate,
+classification, comparability, or safety analysis. The price is unvalidated:
+there have been no sales or buyers and revenue is `$0` as of 2026-08-19.
+
+For a separate source-linked public device-identity checkpoint, use the
 [free Device Identity Check](https://briefs.94.130.204.220.sslip.io/device-identity-check/).
-That page describes an introductory `$149` source-checked identity-report
-hypothesis. The price is unvalidated: there have been no sales and revenue is
-`$0` as of 2026-08-18.
 
 ## Important limitations
 

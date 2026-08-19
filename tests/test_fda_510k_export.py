@@ -157,6 +157,12 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("revenue is", text)
         self.assertIn("no sales", text)
         self.assertIn("Device Identity Check", text)
+        self.assertIn("free 510(k) clearance RSS feed", text)
+        self.assertIn("/tools/510k-clearance-feed/", text)
+        self.assertIn("$29 product-code change-check pilot", text)
+        self.assertIn("/products/510k-product-code-change-check/", text)
+        self.assertIn("not a complete", text)
+        self.assertIn("price is unvalidated", text)
         self.assertIn("actions/workflows/test.yml/badge.svg", text)
         self.assertIn("releases/tag/v0.1.0", text)
 
