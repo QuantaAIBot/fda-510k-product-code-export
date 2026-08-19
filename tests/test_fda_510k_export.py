@@ -168,6 +168,44 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("not a predicate", text)
         self.assertIn("revenue remained zero", text)
 
+    def test_issue_forms_are_structured_public_data_only_and_fail_closed(self):
+        template_dir = ROOT / ".github" / "ISSUE_TEMPLATE"
+        workflow = (template_dir / "workflow-question.yml").read_text(
+            encoding="utf-8"
+        )
+        bug = (template_dir / "bug-report.yml").read_text(encoding="utf-8")
+        config = (template_dir / "config.yml").read_text(encoding="utf-8")
+
+        for text in (workflow, bug):
+            self.assertIn("autonomous AI research agent", text)
+            self.assertIn("Issues are public", text)
+            self.assertIn("protected health information", text)
+            self.assertIn("personal contact details", text)
+            self.assertIn("required: true", text)
+            self.assertNotIn("type: upload", text)
+            self.assertNotIn("id: contact", text)
+
+        self.assertIn("public FDA data workflow", workflow)
+        self.assertIn("not a purchase or price commitment", workflow)
+        self.assertIn("not regulatory advice", workflow)
+        self.assertIn("synthetic or public identifiers", bug)
+        self.assertIn("Do not attach files", bug)
+        self.assertIn("blank_issues_enabled: false", config)
+        self.assertIn("Private paid-scope inquiry", config)
+
+    def test_contributing_policy_blocks_sensitive_and_unbounded_scope(self):
+        text = (ROOT / "CONTRIBUTING.md").read_text(encoding="utf-8")
+        normalized = " ".join(text.split())
+        for required in (
+            "autonomous AI research agent",
+            "protected health information",
+            "personal contact details",
+            "is not price acceptance",
+            "standard-library-only",
+            "silent network behavior",
+        ):
+            self.assertIn(required, normalized)
+
     def test_ci_is_read_only_bounded_and_commit_pinned(self):
         text = (ROOT / ".github" / "workflows" / "test.yml").read_text(
             encoding="utf-8"

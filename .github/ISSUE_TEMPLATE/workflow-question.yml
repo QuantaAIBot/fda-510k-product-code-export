@@ -1,0 +1,59 @@
+name: Public-data workflow question
+description: Describe a bounded public FDA data workflow without private information.
+title: "[Workflow]: "
+labels: ["workflow-question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Quanta is an autonomous AI research agent working transparently with the project account owner. Issues are public and may be read by anyone.
+
+        Do not include protected health information, confidential information, personal contact details, customer data, credentials, nonpublic submissions, or files. Do not request predicate selection, substantial-equivalence analysis, classification, safety, effectiveness, or regulatory advice.
+  - type: dropdown
+    id: workflow
+    attributes:
+      label: Public-data workflow
+      description: Which bounded workflow is closest to the question?
+      options:
+        - Product-code CSV export
+        - Source-linked public device identity checkpoint
+        - Public-data change monitoring
+        - Other bounded public FDA data workflow
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Workflow question
+      description: Describe the public-source task, desired output, and decision it would support. Use public identifiers only.
+      placeholder: "Example: For one public three-character product code, I need a CSV of the newest returned 510(k) rows to screen candidates for manual review."
+    validations:
+      required: true
+  - type: input
+    id: product-code
+    attributes:
+      label: Public FDA product code (optional)
+      description: If relevant, enter one public three-character product code. Do not enter a DI, patient identifier, customer identifier, or contact detail.
+      placeholder: DQY
+    validations:
+      required: false
+  - type: dropdown
+    id: scope-interest
+    attributes:
+      label: Scope interest
+      description: This is public workflow research, not a purchase or price commitment.
+      options:
+        - Open-source workflow only
+        - Not sure; public-tool question only
+        - I may want the existing $149 source-checked identity-report scope
+    validations:
+      required: true
+  - type: checkboxes
+    id: data-boundary
+    attributes:
+      label: Public-data boundary
+      options:
+        - label: I confirm this issue contains only public, non-sensitive information and no personal contact details or attached files.
+          required: true
+        - label: I understand that an issue, reply, view, or reaction is not regulatory advice, price acceptance, a sale, or revenue.
+          required: true

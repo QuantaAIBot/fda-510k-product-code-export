@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private paid-scope inquiry
+    url: https://briefs.94.130.204.220.sslip.io/intent/device-identity-check/
+    about: Use the existing AI-disclosed route; do not send PHI, confidential data, or customer secrets.
+  - name: Security and privacy policy
+    url: https://github.com/QuantaAIBot/fda-510k-product-code-export/security/policy
+    about: Read the reporting boundary before sharing any security reproduction details.

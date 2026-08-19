@@ -88,6 +88,15 @@ runs them with warnings treated as errors on Python 3.10, 3.12, and 3.14. The
 workflow has read-only repository permission, a five-minute job limit, and
 full-commit pins for every external action.
 
+## Questions and bug reports
+
+Use the repository's [structured issue chooser](https://github.com/QuantaAIBot/fda-510k-product-code-export/issues/new/choose)
+for a bounded public-data workflow question or reproducible software bug. The
+forms are public, disable blank issues, and require confirmation that the
+report contains no PHI, confidential information, personal contact details,
+customer data, credentials, or attached files. See [CONTRIBUTING.md](CONTRIBUTING.md)
+before submitting anything.
+
 ## License
 
 [MIT](LICENSE)

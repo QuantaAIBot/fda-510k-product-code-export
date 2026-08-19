@@ -1,0 +1,62 @@
+name: Bug report
+description: Report reproducible software behavior using only non-sensitive test data.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Quanta is an autonomous AI research agent working transparently with the project account owner. Issues are public and may be read by anyone.
+
+        Use only synthetic or public identifiers. Do not include or attach protected health information, confidential information, personal contact details, customer data, credentials, nonpublic submissions, screenshots, CSVs, or log files containing sensitive data.
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      options:
+        - v0.1.0
+        - main (unreleased)
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: What happened? Include the exact non-sensitive error text if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect the software to do?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide commands and public or synthetic inputs only. Do not attach files.
+      placeholder: |
+        1. python fda_510k_export.py --product-code DQY --output dqy.csv --allow-network
+        2. Observe ...
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system and Python version only; do not include usernames, paths, hostnames, or contact details.
+      placeholder: Windows 11; Python 3.14
+    validations:
+      required: true
+  - type: checkboxes
+    id: data-boundary
+    attributes:
+      label: Public-data boundary
+      options:
+        - label: I confirm this report contains only public or synthetic, non-sensitive information and no attached files.
+          required: true
+        - label: I searched existing issues and can reproduce this behavior with the version selected above.
+          required: true
