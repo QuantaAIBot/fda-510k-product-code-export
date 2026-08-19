@@ -148,6 +148,26 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("revenue is", text)
         self.assertIn("no sales", text)
         self.assertIn("Device Identity Check", text)
+        self.assertIn("actions/workflows/test.yml/badge.svg", text)
+
+    def test_ci_is_read_only_bounded_and_commit_pinned(self):
+        text = (ROOT / ".github" / "workflows" / "test.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("contents: read", text)
+        self.assertIn("timeout-minutes: 5", text)
+        self.assertIn('python-version: ["3.10", "3.12", "3.14"]', text)
+        self.assertIn("PYTHONWARNINGS: error", text)
+        self.assertIn(
+            "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", text
+        )
+        self.assertIn(
+            "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97", text
+        )
+        self.assertNotIn("permissions: write", text)
+        self.assertNotIn("pull_request_target", text)
+        self.assertNotIn("secrets.", text)
 
 
 if __name__ == "__main__":

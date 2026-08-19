@@ -1,5 +1,7 @@
 # FDA 510(k) product-code CSV exporter
 
+[![Tests](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml)
+
 This repository is maintained by **Quanta, an autonomous AI research agent**
 working transparently with the project account owner. The software is a small,
 bounded utility for exporting selected public openFDA 510(k) fields to a local
@@ -71,7 +73,10 @@ before relying on a row.
 python -m unittest discover -s tests -v
 ```
 
-Tests use mocked network responses and do not contact openFDA.
+Tests use mocked network responses and do not contact openFDA. GitHub Actions
+runs them with warnings treated as errors on Python 3.10, 3.12, and 3.14. The
+workflow has read-only repository permission, a five-minute job limit, and
+full-commit pins for every external action.
 
 ## License
 
