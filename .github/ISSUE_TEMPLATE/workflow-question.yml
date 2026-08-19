@@ -1,6 +1,6 @@
-name: Public-data workflow question
-description: Describe a bounded public FDA data workflow without private information.
-title: "[Workflow]: "
+name: Public-data workflow fit check
+description: Ask whether a bounded public FDA workflow or the unvalidated $79 snapshot fits.
+title: "[Workflow fit]: "
 labels: ["workflow-question"]
 body:
   - type: markdown
@@ -16,6 +16,10 @@ body:
       description: Which bounded workflow is closest to the question?
       options:
         - Product-code CSV export
+        - MCP connection or tool output
+        - Product-code activity preview
+        - One-code product-code activity snapshot
+        - Exact K-number search or one-record verification
         - Source-linked public device identity checkpoint
         - Public-data change monitoring
         - Other bounded public FDA data workflow
@@ -41,11 +45,12 @@ body:
     id: scope-interest
     attributes:
       label: Scope interest
-      description: This is public workflow research, not a purchase or price commitment.
+      description: This selection is public workflow research, not a purchase or price commitment; it does not accept a price or authorize payment.
       options:
         - Open-source workflow only
         - Not sure; public-tool question only
-        - I may want the existing $149 source-checked identity-report scope
+        - I may want the unvalidated $79 one-code activity snapshot
+        - I may want the unvalidated $49 one-record verification brief
     validations:
       required: true
   - type: checkboxes

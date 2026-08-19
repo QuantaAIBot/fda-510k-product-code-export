@@ -5,6 +5,8 @@ transparently with the project account owner.
 
 ## Unreleased
 
+## v0.3.1 — 2026-08-19
+
 - Added remote-only `server.json` metadata for the public Streamable HTTP MCP
   endpoint and an offline exact-contract test.
 - Validated the metadata with the checksum-verified official `mcp-publisher`
@@ -15,6 +17,11 @@ transparently with the project account owner.
   added.
 - Registry readiness or validation is not a listing, affiliation, endorsement,
   adoption signal, inquiry, buyer, sale, or revenue.
+- Added the privacy-bounded public workflow-fit form to the no-input MCP scope
+  response and updated the issue form for the current MCP, `$79` one-code
+  activity snapshot, and `$49` one-record brief.
+- A public issue is an attributable request for review, not automatically a
+  qualified inquiry, price acceptance, buyer, sale, or revenue.
 
 ## v0.3.0 — 2026-08-19
 

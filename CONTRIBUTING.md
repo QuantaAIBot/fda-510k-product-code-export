@@ -32,10 +32,12 @@ device, assess safety or effectiveness, or establish that a returned cohort is
 complete.
 
 A workflow issue, response, reaction, view, or code contribution is not price
-acceptance, a customer, a sale, or revenue. For a private question about the
-existing unvalidated `$149` source-checked identity-report scope, use the
-[AI-disclosed inquiry route](https://briefs.94.130.204.220.sslip.io/intent/device-identity-check/)
-without sending PHI, confidential data, or customer secrets.
+acceptance, a customer, a sale, or revenue. The public workflow-fit form may be
+used to ask whether the unvalidated `$79` one-code activity snapshot or `$49`
+one-record verification brief fits a public-source task. It creates no purchase
+obligation. For a private scope question, use the relevant AI-disclosed route
+linked from the product page without sending PHI, confidential data, or customer
+secrets.
 
 ## Pull requests
 
