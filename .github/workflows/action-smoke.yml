@@ -1,0 +1,52 @@
+name: Action smoke test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tagged-release:
+    name: Tagged v0.2.0
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Run the public tagged action
+        id: export
+        uses: QuantaAIBot/fda-510k-product-code-export@v0.2.0
+        with:
+          product-code: DQY
+          output: smoke/dqy.csv
+      - name: Validate the bounded CSV contract
+        env:
+          CSV_PATH: ${{ steps.export.outputs.csv-path }}
+          ROW_COUNT: ${{ steps.export.outputs.row-count }}
+        run: |
+          python - <<'PY'
+          import csv
+          import os
+          from pathlib import Path
+
+          expected = [
+              "product_code",
+              "k_number",
+              "device_name",
+              "applicant",
+              "decision_date",
+              "decision_description",
+              "clearance_type",
+              "fda_detail_url",
+              "openfda_query_url",
+          ]
+          path = Path(os.environ["CSV_PATH"])
+          count = int(os.environ["ROW_COUNT"])
+          with path.open(encoding="utf-8-sig", newline="") as handle:
+              reader = csv.DictReader(handle)
+              rows = list(reader)
+              assert reader.fieldnames == expected
+          assert 0 <= count <= 25
+          assert len(rows) == count
+          assert all(row["product_code"] == "DQY" for row in rows)
+          print(f"validated {count} bounded row(s); no artifact retained")
+          PY
