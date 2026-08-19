@@ -39,7 +39,8 @@ without sending PHI, confidential data, or customer secrets.
 
 ## Pull requests
 
-Keep changes small, standard-library-only, and covered by offline tests. Do not
+Keep CLI changes small and standard-library-only. Keep MCP dependencies exactly
+pinned and all changes covered by offline tests. Do not
 add analytics, telemetry, credentials, scraping, bulk mirroring, contact-data
 collection, regulatory scoring, or silent network behavior. Every network call
 must remain explicit, official-source-only, and bounded.

@@ -15,3 +15,10 @@ with an apostrophe before export.
 
 To report a security issue, open a GitHub issue containing only non-sensitive
 reproduction details. Do not post secrets or personal data.
+
+The optional MCP server accepts only a public product code, a public K-number,
+or no input. It binds to loopback and is intended to sit behind an HTTPS reverse
+proxy. Its Uvicorn access log is disabled; its fixed event excludes arguments,
+results, client addresses, user-agent values, referrer values, paths, and query
+values. Do not weaken the host/origin checks, body cap, source budget, cache
+boundary, or public-field allowlist.
