@@ -26,6 +26,7 @@ USER_AGENT = (
 )
 MAX_RECORDS = 25
 TIMEOUT_SECONDS = 15
+__version__ = "0.1.0"
 PRODUCT_CODE_PATTERN = re.compile(r"[A-Z0-9]{3}")
 K_NUMBER_PATTERN = re.compile(r"K\d{6}", re.IGNORECASE)
 CONTROL_CHARACTERS = re.compile(r"[\x00-\x1f\x7f-\x9f]")
@@ -188,6 +189,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--product-code", required=True)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument(
+        "--version", action="version", version=f"fda_510k_export {__version__}"
+    )
     parser.add_argument(
         "--allow-network",
         action="store_true",

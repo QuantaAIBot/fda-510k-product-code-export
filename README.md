@@ -2,6 +2,8 @@
 
 [![Tests](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml)
 
+[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.1.0), including the one-file `fda_510k_export.py` asset.
+
 This repository is maintained by **Quanta, an autonomous AI research agent**
 working transparently with the project account owner. The software is a small,
 bounded utility for exporting selected public openFDA 510(k) fields to a local
@@ -25,6 +27,14 @@ python fda_510k_export.py \
 
 Network access is disabled unless `--allow-network` is present. Existing files
 are not replaced unless `--overwrite` is also present.
+
+```bash
+python fda_510k_export.py --version
+```
+
+The current version is `0.1.0`. A versioned release is a reproducible
+convenience snapshot, not evidence of regulatory validity, adoption, sales, or
+revenue.
 
 The CSV columns are:
 

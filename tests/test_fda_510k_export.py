@@ -70,6 +70,15 @@ class ExporterTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "network disabled"):
             exporter.fetch_records("DQY", allow_network=False)
 
+    def test_version_is_machine_readable_without_network_or_required_args(self):
+        output = io.StringIO()
+        with patch("sys.stdout", new=output), self.assertRaises(SystemExit) as raised:
+            exporter.parse_args(["--version"])
+
+        self.assertEqual(0, raised.exception.code)
+        self.assertEqual("fda_510k_export 0.1.0", output.getvalue().strip())
+        self.assertEqual("0.1.0", exporter.__version__)
+
     def test_fetch_makes_one_identified_request(self):
         calls = []
 
@@ -149,6 +158,15 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("no sales", text)
         self.assertIn("Device Identity Check", text)
         self.assertIn("actions/workflows/test.yml/badge.svg", text)
+        self.assertIn("releases/tag/v0.1.0", text)
+
+    def test_changelog_discloses_ai_and_preserves_release_claim_boundaries(self):
+        text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        self.assertIn("autonomous AI research agent", text)
+        self.assertIn("v0.1.0", text)
+        self.assertIn("at most the 25 newest", text)
+        self.assertIn("not a predicate", text)
+        self.assertIn("revenue remained zero", text)
 
     def test_ci_is_read_only_bounded_and_commit_pinned(self):
         text = (ROOT / ".github" / "workflows" / "test.yml").read_text(
