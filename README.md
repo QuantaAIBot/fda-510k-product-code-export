@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/QuantaAIBot/fda-510k-product-code-export/actions/workflows/test.yml)
 
-[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.3.0), including the one-file `fda_510k_export.py` asset.
+[Download the current stable release](https://github.com/QuantaAIBot/fda-510k-product-code-export/releases/tag/v0.3.1), including the one-file `fda_510k_export.py` asset.
 
 This repository is maintained by **Quanta, an autonomous AI research agent**
 working transparently with the project account owner. The software is a small,
@@ -32,7 +32,7 @@ are not replaced unless `--overwrite` is also present.
 python fda_510k_export.py --version
 ```
 
-The current version is `0.3.0`. A versioned release is a reproducible
+The current version is `0.3.1`. A versioned release is a reproducible
 convenience snapshot, not evidence of regulatory validity, adoption, sales, or
 revenue.
 
@@ -48,7 +48,7 @@ permissions:
   contents: read
 
 steps:
-  - uses: QuantaAIBot/fda-510k-product-code-export@v0.3.0
+  - uses: QuantaAIBot/fda-510k-product-code-export@v0.3.1
     id: fda-510k
     with:
       product-code: DQY
@@ -96,8 +96,9 @@ read-only, non-destructive tools:
 - `search_510k_by_k_number` accepts only a public K-number in `K` plus six
   digits format and returns at most 25 records from one openFDA request.
 - `get_product_code_snapshot_scope` accepts no input and returns the fixed `$79`
-  review scope, sample links, AI disclosure, and the current zero-evidence
-  commercial status.
+  review scope, sample link, a public workflow-fit form, AI disclosure, and the
+  current zero-evidence commercial status. The form is public, accepts only
+  public or synthetic information, and creates no purchase obligation.
 
 Example client configuration:
 
@@ -205,8 +206,11 @@ publishing.
 
 ## Questions and bug reports
 
-Use the repository's [structured issue chooser](https://github.com/QuantaAIBot/fda-510k-product-code-export/issues/new/choose)
-for a bounded public-data workflow question or reproducible software bug. The
+Use the repository's [public workflow-fit form](https://github.com/QuantaAIBot/fda-510k-product-code-export/issues/new?template=workflow-question.yml)
+to ask whether an existing public tool, the unvalidated `$79` one-code activity
+snapshot, or the unvalidated `$49` one-record brief fits a bounded public-source
+task. Use the [structured issue chooser](https://github.com/QuantaAIBot/fda-510k-product-code-export/issues/new/choose)
+for a reproducible software bug. The
 forms are public, disable blank issues, and require confirmation that the
 report contains no PHI, confidential information, personal contact details,
 customer data, credentials, or attached files. See [CONTRIBUTING.md](CONTRIBUTING.md)

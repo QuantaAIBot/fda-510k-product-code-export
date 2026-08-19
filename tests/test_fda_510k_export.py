@@ -76,8 +76,8 @@ class ExporterTests(unittest.TestCase):
             exporter.parse_args(["--version"])
 
         self.assertEqual(0, raised.exception.code)
-        self.assertEqual("fda_510k_export 0.3.0", output.getvalue().strip())
-        self.assertEqual("0.3.0", exporter.__version__)
+        self.assertEqual("fda_510k_export 0.3.1", output.getvalue().strip())
+        self.assertEqual("0.3.1", exporter.__version__)
 
     def test_fetch_makes_one_identified_request(self):
         calls = []
@@ -167,9 +167,9 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("not a complete", text)
         self.assertIn("price is unvalidated", text)
         self.assertIn("actions/workflows/test.yml/badge.svg", text)
-        self.assertIn("releases/tag/v0.3.0", text)
+        self.assertIn("releases/tag/v0.3.1", text)
         self.assertIn("## GitHub Action", text)
-        self.assertIn("uses: QuantaAIBot/fda-510k-product-code-export@v0.3.0", text)
+        self.assertIn("uses: QuantaAIBot/fda-510k-product-code-export@v0.3.1", text)
         self.assertIn("uses no token or secret", text)
 
     def test_changelog_discloses_ai_and_preserves_release_claim_boundaries(self):
@@ -200,6 +200,10 @@ class ExporterTests(unittest.TestCase):
         self.assertIn("public FDA data workflow", workflow)
         self.assertIn("not a purchase or price commitment", workflow)
         self.assertIn("not regulatory advice", workflow)
+        self.assertIn("MCP connection or tool output", workflow)
+        self.assertIn("unvalidated $79 one-code activity snapshot", workflow)
+        self.assertIn("unvalidated $49 one-record verification brief", workflow)
+        self.assertIn("v0.3.1", bug)
         self.assertIn("synthetic or public identifiers", bug)
         self.assertIn("Do not attach files", bug)
         self.assertIn("blank_issues_enabled: false", config)

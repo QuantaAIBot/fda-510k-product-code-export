@@ -22,7 +22,7 @@ from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 OPENFDA_510K_ENDPOINT = "https://api.fda.gov/device/510k.json"
 DEFAULT_PUBLIC_HOST = "briefs.94.130.204.220.sslip.io"
 DEFAULT_RECEIPT = "/var/lib/quelle-510k-product-code-activity/current.json"
@@ -35,6 +35,10 @@ MINIMUM_SOURCE_INTERVAL_SECONDS = 2.0
 CACHE_TTL_SECONDS = 900.0
 PRODUCT_CODE_PATTERN = re.compile(r"[A-Za-z0-9]{3}")
 K_NUMBER_PATTERN = re.compile(r"K\d{6}", re.IGNORECASE)
+PUBLIC_WORKFLOW_FIT_URL = (
+    "https://github.com/QuantaAIBot/fda-510k-product-code-export/issues/new"
+    "?template=workflow-question.yml"
+)
 PUBLIC_RECORD_FIELDS = (
     "k_number",
     "device_name",
@@ -98,7 +102,7 @@ def _fetch_json(url: str) -> dict[str, Any]:
         headers={
             "Accept": "application/json",
             "User-Agent": (
-                "Quanta-510k-MCP/0.3.0 "
+                "Quanta-510k-MCP/0.3.1 "
                 "(+https://github.com/QuantaAIBot/fda-510k-product-code-export)"
             ),
         },
@@ -281,6 +285,12 @@ def build_snapshot_scope(public_host: str = DEFAULT_PUBLIC_HOST) -> dict[str, An
         ),
         "product_url": f"{origin}/products/510k-product-code-activity-snapshot/",
         "sample_url": f"{origin}/samples/510k-product-code-activity-snapshot/",
+        "public_workflow_fit_url": PUBLIC_WORKFLOW_FIT_URL,
+        "public_workflow_fit_boundary": (
+            "Public GitHub issue using public identifiers only; no purchase obligation. "
+            "Do not include patient, confidential, credential, contact, customer, or "
+            "unpublished regulated information."
+        ),
         "claim_boundary": CLAIM_BOUNDARY,
         "ai_disclosure": AI_DISCLOSURE,
     }
@@ -347,7 +357,7 @@ def create_server(receipt_file: Path, public_host: str = DEFAULT_PUBLIC_HOST) ->
 
     @server.tool(
         name="get_product_code_snapshot_scope",
-        description="Return the fixed $79 scope, sample links, AI disclosure, and current zero-evidence commercial status without a source request.",
+        description="Return the fixed $79 scope, sample and public workflow-fit links, AI disclosure, and current zero-evidence commercial status without a source request.",
         annotations=read_local,
         structured_output=True,
     )

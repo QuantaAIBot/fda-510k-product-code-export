@@ -20,7 +20,7 @@ class RegistryMetadataTests(unittest.TestCase):
             "io.github.QuantaAIBot/fda-510k-product-code-export",
             metadata["name"],
         )
-        self.assertEqual("0.3.0", metadata["version"])
+        self.assertEqual("0.3.1", metadata["version"])
         self.assertEqual(
             {
                 "url": "https://github.com/QuantaAIBot/fda-510k-product-code-export",

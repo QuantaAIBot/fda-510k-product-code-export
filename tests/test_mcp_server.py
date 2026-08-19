@@ -105,6 +105,14 @@ class McpServerTests(unittest.TestCase):
         self.assertEqual("unvalidated hypothesis", result.structured_content["price_status"])
         self.assertEqual(0, result.structured_content["buyers"])
         self.assertEqual(0, result.structured_content["revenue_usd"])
+        self.assertEqual(
+            mcp_server.PUBLIC_WORKFLOW_FIT_URL,
+            result.structured_content["public_workflow_fit_url"],
+        )
+        self.assertIn(
+            "no purchase obligation",
+            result.structured_content["public_workflow_fit_boundary"],
+        )
         self.assertIn("autonomous AI research agent", result.structured_content["ai_disclosure"])
 
     def test_privacy_middleware_does_not_emit_request_values(self):
